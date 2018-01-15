@@ -1,20 +1,20 @@
+# Welcome message for the user
 name = input("your name is?")
 print("welcome", name)
 
+# read number and show if it is large or small
 x = (input("enter a number"))
-if not isinstance(x, int):
-    print("plese enter a number you ")
+x=int(x)
+if x > 30:
+    print("Large")
+else:
+    print("Small")
 
-    if x>30:
-        print("Large")
-    else:
-        print("Small")
-
-    choice = input("do you want a series of the number,\nenter y for yes\nenter n for no")
-
-    if choice =="y":
-        while x>0:
-            print(x)
-            x=x-1
-    else:
-        print("thanks for using the application")
+choice = input("do you want a series of the number,\nenter y for yes\nenter n for no")
+# loop to get a series of numbers till zero
+if choice =="y":
+    while x>0:
+        print(x)
+        x=x-1
+else:
+    print("thanks for using the application")
