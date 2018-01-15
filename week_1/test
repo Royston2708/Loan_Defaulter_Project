@@ -1,13 +1,15 @@
 # Welcome message for the user
-running = True
 name = input("Kindly enter your name ?\n")
 print("welcome", name)
 
-# read number and show if it is large or small
-while running:
+# Function created to run the entire program after the name is inputted
+# Read number and show if it is large or small
+def ask_Q(should_ask = True):
+
     x = (input("enter a number\n"))
     try:
         x=int(x)
+        should_ask = False
         if x > 30:
             print("Large")
         else:
@@ -22,7 +24,7 @@ while running:
         else:
             print("thanks for using the application\n")
 
-        # Part 2 of exercise
+        # Part 2 of categorization exercise to put the number into 3 groups
 
         print("Lets try with another number\nThis time we will categorize the numbers a little more ")
         y = input("enter another number")
@@ -37,6 +39,8 @@ while running:
 
         print("thanks")
     except:
-        print("please use numeric characters only")
+        if should_ask == True:
+            print("please use numeric characters only")
+            ask_Q()
 
-
+ask_Q()
