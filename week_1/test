@@ -1,0 +1,20 @@
+name = input("your name is?")
+print("welcome", name)
+
+x = (input("enter a number"))
+if not isinstance(x, int):
+    print("plese enter a number you ")
+
+    if x>30:
+        print("Large")
+    else:
+        print("Small")
+
+    choice = input("do you want a series of the number,\nenter y for yes\nenter n for no")
+
+    if choice =="y":
+        while x>0:
+            print(x)
+            x=x-1
+    else:
+        print("thanks for using the application")
