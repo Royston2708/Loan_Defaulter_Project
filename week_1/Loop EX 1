@@ -1,0 +1,18 @@
+largest_so_far = -1
+print("before", largest_so_far)
+for the_num in [9,41,12,3,74,15]:
+    if the_num > largest_so_far:
+        largest_so_far = the_num
+    print(largest_so_far, the_num)
+print("after", largest_so_far)
+
+# Using better variables
+count=0
+total=0
+x = [9,41,12,3,74,15]
+for i in x:
+    count=count+1
+    total=total+i
+    print("Current count, total and average are as follows",count,total,total/count)
+
+print("\nfinal average is", total/count)
