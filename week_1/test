@@ -1,20 +1,42 @@
 # Welcome message for the user
-name = input("your name is?")
+running = True
+name = input("Kindly enter your name ?\n")
 print("welcome", name)
 
 # read number and show if it is large or small
-x = (input("enter a number"))
-x=int(x)
-if x > 30:
-    print("Large")
-else:
-    print("Small")
+while running:
+    x = (input("enter a number\n"))
+    try:
+        x=int(x)
+        if x > 30:
+            print("Large")
+        else:
+            print("Small")
 
-choice = input("do you want a series of the number,\nenter y for yes\nenter n for no")
-# loop to get a series of numbers till zero
-if choice =="y":
-    while x>0:
-        print(x)
-        x=x-1
-else:
-    print("thanks for using the application")
+        choice = input("do you want a series of the number,\nenter y for yes\nenter n for no")
+        # loop to get a series of numbers till zero
+        if choice == "y":
+            while x > 0:
+                print(x)
+                x = x - 1
+        else:
+            print("thanks for using the application\n")
+
+        # Part 2 of exercise
+
+        print("Lets try with another number\nThis time we will categorize the numbers a little more ")
+        y = input("enter another number")
+        y = int(y)
+
+        if 0 < y < 10:
+            print("number belongs to group 1")
+        elif 10 < y < 50:
+            print("number belongs to group 2")
+        else:
+            print("number belongs to group 3")
+
+        print("thanks")
+    except:
+        print("please use numeric characters only")
+
+
