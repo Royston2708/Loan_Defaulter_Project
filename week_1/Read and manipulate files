@@ -1,0 +1,12 @@
+# Reading and manipulating files
+
+file_handle = open('SampleTextFile_small.txt')
+for i in file_handle:
+    if i.startswith('lorem'):
+        print(i)
+
+count = 0
+for num in enumerate(file_handle):
+    count = num
+print("The final count is", count)
+
