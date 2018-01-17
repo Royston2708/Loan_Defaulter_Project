@@ -88,5 +88,26 @@ for word,count in counts.items():
     if bigcount is None or count>bigcount:
         bigword=word
         bigcount=count
-
+print("biggest word and its frequency is")
 print(bigword,bigcount)
+print("\n")
+
+# for 10 most common words
+
+first=list()
+for key,value in counts.items():
+    new_list = (value,key)
+    first.append(new_list)
+
+first= sorted(first,reverse=True)
+
+print("top ten most frequent words are")
+for value,key in first[:10]:
+    print(key,value)
+
+#Aliter
+
+random = [(sorted([(v,k) for (k,v) in counts.items()],reverse=True))]
+print(random[:10])
+
+
