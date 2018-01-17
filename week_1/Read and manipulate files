@@ -13,6 +13,9 @@ a = "Hey this is tiring ! lets do it later"
 data = a.split()
 print(data)
 
+b = a.replace(" is"," was" )
+print(b)
+
 # Dictionaries and their use
 b= dict()
 b['money']=100
@@ -27,4 +30,24 @@ while x>0:
     x=x-1
     print(b['money'])
 
-print("final amount left is", b['money'])
+print("final amount left is", b['money'],"\n")
+
+#Counting in dictionaries
+
+frequency= dict()
+names = ["roy","roy","aishu","prer","artu","vinny","aishu","prer","prer","aishu","artu","vinny","sam","sheku"]
+
+# Method 1 to count names in the list
+for name in names:
+    if name not in frequency:
+        frequency[name]=1
+    else:
+        frequency[name]= frequency[name]+1
+
+print(frequency)
+
+# Method 2 to count names in the list
+for name in names:
+    frequency[name] =frequency.get(name,0)+1
+
+print(frequency)
