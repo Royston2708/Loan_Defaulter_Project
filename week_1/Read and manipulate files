@@ -1,4 +1,4 @@
-# Reading and manipulating files
+#Reading and manipulating files
 
 file_handle = open('SampleTextFile_small.txt')
 for i in file_handle:
@@ -51,3 +51,42 @@ for name in names:
     frequency[name] =frequency.get(name,0)+1
 
 print(frequency)
+
+# Inputing a line and telling us the most common word
+
+my_dict = dict()
+
+print("enter a sentence\n")
+line = input("")
+words = line.split()
+
+for word in words:
+    my_dict[word]= my_dict.get(word,0)+1
+
+print("word counts are", my_dict)
+for key in my_dict:
+    print(key,my_dict[key])
+
+
+#FIRST COMPLETE CODE
+
+print("\n\n")
+print("Welcome to the culmination of all the practice")
+
+handle = open('lord of the rings -1.txt')
+
+counts = dict()
+for line in handle:
+    words= line.split()
+    for word in words:
+        counts[word]=counts.get(word,0)+1
+
+bigcount= None
+smallcount = None
+
+for word,count in counts.items():
+    if bigcount is None or count>bigcount:
+        bigword=word
+        bigcount=count
+
+print(bigword,bigcount)
