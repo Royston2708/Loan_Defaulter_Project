@@ -9,4 +9,22 @@ count = 0
 for num in enumerate(file_handle):
     count = num
 print("The final count is", count)
+a = "Hey this is tiring ! lets do it later"
+data = a.split()
+print(data)
 
+# Dictionaries and their use
+b= dict()
+b['money']=100
+b['name']= "Roy"
+b['date']= "17-01-18"
+
+print(b)
+print(b['money'])
+x=5
+while x>0:
+    b['money']= b['money'] + .1*b['money']
+    x=x-1
+    print(b['money'])
+
+print("final amount left is", b['money'])
