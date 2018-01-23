@@ -27,3 +27,4 @@ y= welcome.find('.')
 print(y)
 final = welcome[x:y]
 print(final)
+print("hope its back to normal")
