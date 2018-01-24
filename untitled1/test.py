@@ -19,3 +19,7 @@ print("first element selected is", element_1, "\n")
 
 group_1 = np_2d[:, 1:3]
 print("group one has john and sean with the following data\n", group_1)
+
+strength = np.round(np.random.normal(5,1.5,1000),2)
+print(np.median(strength))
+
