@@ -12,7 +12,10 @@ print("bmi data is", bmi)
 print(bmi[bmi > 22])
 
 np_2d = np.array([height, weight])
-print(np_2d)
+print(np_2d,"\n")
 
 element_1 = np_2d[0][3]
-print(element_1)
+print("first element selected is", element_1, "\n")
+
+group_1 = np_2d[:, 1:3]
+print("group one has john and sean with the following data\n", group_1)
