@@ -11,4 +11,8 @@ bmi = np_weight/np_height**2
 print("bmi data is", bmi)
 print(bmi[bmi > 22])
 
+np_2d = np.array([height, weight])
+print(np_2d)
 
+element_1 = np_2d[0][3]
+print(element_1)
