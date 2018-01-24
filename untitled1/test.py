@@ -9,3 +9,6 @@ np_weight= np.array(weight)
 print("weights are", np_weight, "\n")
 bmi = np_weight/np_height**2
 print("bmi data is", bmi)
+print(bmi[bmi > 22])
+
+
