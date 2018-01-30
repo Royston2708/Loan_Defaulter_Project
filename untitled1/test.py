@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib as mtlib
+import matplotlib.pyplot as plt
 
 height = [1.72, 1.69, 1.85, 2.01, 1.79]
 np_height = np.array(height)
@@ -23,3 +24,5 @@ print("group one has john and sean with the following data\n", group_1)
 strength = np.round(np.random.normal(5,1.5,1000),2)
 print(np.median(strength))
 
+plt.scatter(bmi,height)
+plt.show()
