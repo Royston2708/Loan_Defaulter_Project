@@ -9,6 +9,7 @@
 
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # We set the seed of the rand function in order to make sure that if someone else wants to test the algorithm
 # They can generate the same random numbers by using the same seed
@@ -52,5 +53,6 @@ print(outcomes)
 
 print(pd.DataFrame(outcomes))
 
-
+plt.plot(outcomes)
+plt.show()
 
