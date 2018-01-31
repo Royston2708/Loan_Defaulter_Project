@@ -32,6 +32,25 @@ else:
 print("You rolled a", str(dice), "on the dice")
 print("you are now on step number", str(step))
 
+#For a Random Walk
+
+outcomes = [0]
+np.random.seed(120)
+
+for i in range(150):
+    step = outcomes[-1]
+    dice_2 = np.random.randint(1,7)
+    if dice_2 <= 2:
+        step = max(0,step-1)
+    elif dice_2 <=5:
+        step = step + 1
+    else:
+        step = step + np.random.randint(1,7)
+    outcomes.append(step)
+
+print(outcomes)
+
+print(pd.DataFrame(outcomes))
 
 
 
