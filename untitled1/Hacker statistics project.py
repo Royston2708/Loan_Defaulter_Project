@@ -63,6 +63,6 @@ np_all_walks_t = np.transpose(np_all_walks)  #(WHY IS MAKING IT TRANSPOSE VITAL?
 print(pd.DataFrame(random_walk), "\n\n")
 print(pd.DataFrame(all_walks), "\n\n")
 
-plt.plot(np_all_walks)
+plt.plot(np_all_walks_t)
 plt.show()
 
