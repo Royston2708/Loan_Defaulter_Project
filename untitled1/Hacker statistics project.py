@@ -39,7 +39,7 @@ np.random.seed(123)
 
 all_walks = []
 
-for i in range (100):
+for i in range (1000):
     random_walk = [0]
 
     for i in range(100):
@@ -71,3 +71,10 @@ print(pd.DataFrame(all_walks), "\n\n")
 plt.plot(np_all_walks_t)
 plt.show()
 
+final = np.array(np_all_walks_t[-1])
+plt.hist(final)
+plt.grid()
+plt.xlabel("Number of steps")
+plt.ylabel("Frequency/ Number of occurences")
+plt.title(" PLOT OF STEPS REACHED VS FREQUENCY")
+plt.show()
