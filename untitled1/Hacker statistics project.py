@@ -78,3 +78,5 @@ plt.xlabel("Number of steps")
 plt.ylabel("Frequency/ Number of occurences")
 plt.title(" PLOT OF STEPS REACHED VS FREQUENCY")
 plt.show()
+
+print("Chances of ending above step 60 is" , str((np.mean(final>60))*100), "%")
