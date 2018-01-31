@@ -14,4 +14,5 @@ brics.index = ["BR", "RU", "IN", "CH", "SA"]
 print(brics,"\n\n")
 
 census = pd.read_csv(filepath_or_buffer = "/home/user/Downloads/census.csv")
-print(census["Age 80 to 84"])
+print(census[["Age 25 to 29"  "Age "]])
+
