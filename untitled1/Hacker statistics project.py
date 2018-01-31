@@ -52,6 +52,11 @@ for i in range (100):
         else:
             step = step + np.random.randint(1,7)
 
+        # Factoring in the error
+        if np.random.rand() <= 0.001:
+            step = 0
+
+
         random_walk.append(step)
 
 
