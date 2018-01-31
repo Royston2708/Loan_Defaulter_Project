@@ -35,24 +35,34 @@ print("you are now on step number", str(step))
 
 #For a Random Walk
 
-outcomes = [0]
-np.random.seed(120)
+np.random.seed(123)
 
-for i in range(150):
-    step = outcomes[-1]
-    dice_2 = np.random.randint(1,7)
-    if dice_2 <= 2:
-        step = max(0,step-1)
-    elif dice_2 <=5:
-        step = step + 1
-    else:
-        step = step + np.random.randint(1,7)
-    outcomes.append(step)
+all_walks = []
 
-print(outcomes)
+for i in range (100):
+    random_walk = [0]
 
-print(pd.DataFrame(outcomes))
+    for i in range(100):
+        step = random_walk[-1]
+        dice_2 = np.random.randint(1,7)
+        if dice_2 <= 2:
+            step = max(0,step-1)
+        elif dice_2 <=5:
+            step = step + 1
+        else:
+            step = step + np.random.randint(1,7)
 
-plt.plot(outcomes)
+        random_walk.append(step)
+
+
+    all_walks.append(random_walk)
+
+np_all_walks = np.array(all_walks)
+np_all_walks_t = np.transpose(np_all_walks)  #(WHY IS MAKING IT TRANSPOSE VITAL? ASK RAMESH)
+
+print(pd.DataFrame(random_walk), "\n\n")
+print(pd.DataFrame(all_walks), "\n\n")
+
+plt.plot(np_all_walks)
 plt.show()
 
