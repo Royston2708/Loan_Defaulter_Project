@@ -23,8 +23,14 @@
 
 import pandas as pd
 file = "/home/user/Downloads/Data Sources/battledeath.xlsx"
-data = pd.ExcelFile(file)
-print(data.sheet_names)
+data = pd.ExcelFile(io = file)
+print(data.sheet_names, "\n")
 
 df1 = data.parse("2004")
-print(df1.head)
+print(df1.head())
+
+
+from sqlalchemy import create_engine
+engine = create_engine('sqlite:////home/user/Downloads/Data Sources/Chinook.sqlite')
+table_names = engine.table_names()
+print("\n", table_names)
