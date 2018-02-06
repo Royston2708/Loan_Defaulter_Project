@@ -14,12 +14,15 @@ df_data = pd.read_csv("/home/user/Downloads/Data Sources/bank-full.csv", sep= ";
 print(df_data.head(10))
 
 bins = df_data["job"].iloc[2000:4000].unique()
+
+job = df_data["job"]
 #Aliter to this is
 # bins = df_data.iloc[2000:4000, 1]
 
 print("Hello")
 array = [item for item in df_data["job"]]
 print(array)
+# Aliter to above code is array = job.values
 letter_counts = Counter(array)
 hist_df = pd.DataFrame.from_dict(letter_counts, orient = 'index')
 hist_df.plot(kind ='bar', figsize = (5, 5), fontsize = 7)
