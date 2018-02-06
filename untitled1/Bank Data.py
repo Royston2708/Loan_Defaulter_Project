@@ -25,7 +25,7 @@ print(array)
 # Aliter to above code is array = job.values
 letter_counts = Counter(array)
 hist_df = pd.DataFrame.from_dict(letter_counts, orient = 'index')
-hist_df.plot(kind ='bar', figsize = (5, 5), fontsize = 7)
+hist_df.plot(kind ='bar', figsize = (5, 5), fontsize = 7, legend = True)
 plt.show()
 
 
@@ -36,10 +36,12 @@ age = [int(item) for item in married_and_house["age"]]
 print(age)
 
 plt.hist(age)
+plt.xlabel("Age of Customers")
+plt.ylabel("Number of individuals")
 plt.show()
-
-sns.swarmplot(x ="age", y="balance", data = df_data.iloc[:4000,:])
+#
+# sns.swarmplot(x ="age", y="balance", data = df_data.iloc[:4000,:])
 #df_data.iloc[:4000, :] returns a sub-dataframe with the first 4000 rows and all the columns
-plt.show()
+# plt.show()
 
 # Well done
