@@ -9,8 +9,9 @@ from collections import Counter
 sns.set()
 df_data = pd.read_csv("/home/user/Downloads/Data Sources/bank-full.csv", sep= ";")
 
+# df_data.iloc [::3, 0] = 10 will assign 10 to ever 3rd row starting from zero in the zero index column aka the first column
 # df.head(5)/df.head(10) returns the first 5 rows and the first 10 rows respectively
-print(df_data.head())
+print(df_data.head(10))
 
 bins = df_data["job"].iloc[2000:4000].unique()
 #Aliter to this is
