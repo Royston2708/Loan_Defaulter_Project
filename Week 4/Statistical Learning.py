@@ -22,8 +22,25 @@ plt.show()
 #Creating an ECDF
 #
 # print(df["age"].values)
-np_age = np.sort(df["age"].values)
+np_age = df["age"]
+np_age_sort = np.sort(df["age"].values)
 y= np.arange(1, len(np_age)+1)/len(np_age)
 
 plt.plot(np_age, y ,linestyle="none", marker = ".")
+plt.margins(0.02)
+plt.show()
+
+# REGRESSION
+np_age_1000 = df["age"].iloc[:1000].values
+np_balance_1000 = df["balance"].iloc[:1000].values
+
+plt.plot(np_age_1000, np_balance_1000 , marker = ".", linestyle = "none")
+slope, intercept = np.polyfit(np_age_1000,np_balance_1000, 1)
+
+print("slope is ", slope)
+print("intercept is ", intercept)
+
+x = np.array([0,100])
+line = slope* x + intercept
+plt.plot(x, line)
 plt.show()
