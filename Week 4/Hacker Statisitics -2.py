@@ -25,3 +25,4 @@ print(total_4heads/10000)
 x = np.random.binomial(100, 0.5,size= 10000)
 plt.hist(x, bins= 100)
 plt.show()
+
