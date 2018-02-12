@@ -30,9 +30,9 @@ plt.plot(np_age, y ,linestyle="none", marker = ".")
 plt.margins(0.02)
 plt.show()
 
-# REGRESSION
-np_age_1000 = df["age"].iloc[:1000].values
-np_balance_1000 = df["balance"].iloc[:1000].values
+# REGRESSION (3rd argument in polyfit is the degree of the polynomial which is to be fitted to the 2 sets of data)
+np_age_1000 = df["age"].iloc[2200:2300].values
+np_balance_1000 = df["balance"].iloc[2200:2300].values
 
 plt.plot(np_age_1000, np_balance_1000 , marker = ".", linestyle = "none")
 slope, intercept = np.polyfit(np_age_1000,np_balance_1000, 1)
@@ -40,7 +40,29 @@ slope, intercept = np.polyfit(np_age_1000,np_balance_1000, 1)
 print("slope is ", slope)
 print("intercept is ", intercept)
 
-x = np.array([0,100])
+x = np.array([0,80])
 line = slope* x + intercept
 plt.plot(x, line)
+plt.show()
+
+
+# Bootstrapping using a function and without one
+
+# With a function
+def bs_values (data, func, size):
+    bs_sample_generated = np.random.choice(data, len(data))
+    bs_result = func(bs_sample_generated)
+    return(bs_result)
+
+# Without a function
+bs_sample_age = np.random.choice(np_age_1000, size = len(np_age_1000))
+
+
+# Generating multiple Bootstrap Replicates and stoing them
+
+bs_replicates = np.empty(1000)
+for i in range (1000):
+    bs_replicates[i]= bs_values(np_age_1000, np.mean, size = len(np_age_1000))
+
+plt.hist(bs_replicates, bins =50, normed = True)
 plt.show()
