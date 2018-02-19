@@ -61,14 +61,3 @@ for element in prediction:
 
 print("Number of incorrect predictions =", wrong_prediction,"\nNumber of correct predictions =", correct_prediction)
 print("Accuracy of model =", (correct_prediction/(wrong_prediction+correct_prediction))*100, "%")
-
-
-
-# #Running KNN with random Data set
-# np.random.seed(50)
-# x_new = [np.random.randint(0,2,26)]
-# print("\n\n", x_new)
-#
-# prediction_random = knn.predict(x_new)
-# print("The label of the new value is = ",prediction_random)
-#
