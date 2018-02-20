@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
 
 
-# The Objective of this code is to build a K-Nearest Neighbours Classifier for the Bank Data that we have
+# Build a K-Nearest Neighbours Classifier for the Bank Data that we have
 file1 = pd.read_csv("/home/user/Downloads/portugese bank/bank-full-encoded.csv", sep=";" ,parse_dates= True)
 print(file1.shape)
 
@@ -17,9 +17,9 @@ print(file1.shape)
 sns.set()
 
 #Creating a Countplot of the count of people who are middle aged vs whether or not they were approved for a loan
-sns.countplot("age_mid", hue = "y", data = file1, palette = "RdBu")
+sns.countplot("job_bluecollar", hue = "y", data = file1, palette = "RdBu")
 plt.xticks([0,1], ["NOT MIDDLE AGED","MIDDLE AGED"])
-plt.title("AGE")
+plt.title("MID-AGE vs LOAN ACCEPTANCE")
 plt.show()
 
 # Splitting Data into Training set and test Set
@@ -74,7 +74,7 @@ x_new = file1.drop("y", axis = 1).values
 
 x_train, x_test, y_train, y_test = train_test_split(x_new, y_new, test_size= 0.3, random_state= 25)
 
-logreg = LogisticRegression(C = 2)
+logreg = LogisticRegression()
 logreg.fit(x_train, y_train)
 
 y_prediction = logreg.predict(x_test)
