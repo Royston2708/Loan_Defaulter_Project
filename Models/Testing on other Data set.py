@@ -1,19 +1,16 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import sklearn
-from sklearn.neighbors import KNeighborsClassifier
-import seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.ensemble import RandomForestClassifier
 
 
 file1 = pd.read_excel("/home/user/Downloads/Data Sources/Kaggle Datasets/Par_Data for Logistic Regression.xlsx", header = 1)
 print(file1.shape)
 
 y = file1["Default_On_Payment"]
-x = file1.drop(["Customer_ID", "Default_On_Payment"], axis = 1)
+x = file1.drop(["Customer_ID"], axis = 1)
 x_columns = x.keys()
 print(x_columns)
 
@@ -35,14 +32,20 @@ for key in x_columns:
         new_df = pd.concat([new_df, x[str(key)]], axis = 1)
 
 print(new_df.head())
+print(new_df.keys())
 
-#
-#
-# new_df = pd.concat(new_dict.values(), keys = new_dict.keys())
-# print(new_df.head())
-# x_train, x_test, y_train, y_test = train_test_split(x, y, test_size= 0.3, random_state= 25)
-# logreg = LogisticRegression()
-# logreg.fit(x, y)
+y_new = new_df["Default_On_Payment"].values
+x_new = new_df.drop(["Default_On_Payment"], axis= 1).values
+x_train, x_test, y_train, y_test = train_test_split(x_new, y_new, test_size= 0.3, random_state= 25)
+logreg = LogisticRegression()
+logreg.fit(x_train, y_train)
 
-# prediction_logReg = logreg.predict(x_test)
-# print("\nThe Confusion Matrix for the logreg Model is as follows: \n", confusion_matrix(y_test, prediction_logReg))
+prediction_logReg = logreg.predict(x_test)
+print("\nThe Confusion Matrix for the logreg Model is as follows: \n", confusion_matrix(y_test, prediction_logReg))
+
+rf = RandomForestClassifier()
+
+rf.fit(x_train,y_train)
+rf_prediction = rf.predict(x_test)
+print("\nThe Confusion Matrix for the Random Forrest Algorithm is as follows:\n",confusion_matrix(y_test, rf_prediction))
+print("\nThe Classification report for the Random Forrest Model is:\n",classification_report(y_test,rf_prediction))
