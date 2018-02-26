@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sklearn
-import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
+import xlsxwriter
 
 #Reading the file into the system
 file1 = pd.read_csv("/home/user/Downloads/portugese bank/bank-full-encoded.csv", sep=";" ,parse_dates= True)
@@ -26,3 +26,19 @@ print("\nThe Confusion Matrix is as follows:\n", confusion_matrix(y_test,rf_pred
 
 print("\nThe Classification Report for the random forrest classifier is as follows:\n", classification_report(y_test, rf_prediction))
 
+# Writing output to Excel
+
+writer = pd.ExcelWriter(path = "/home/user/Downloads/portugese bank/Random Forrest.xlsx", engine = 'xlsxwriter')
+workbook = writer.book
+
+rf_output = []
+for i in rf_prediction:
+    rf_output.append(i)
+
+df_rfoutput = pd.DataFrame(rf_output)
+df_rfoutput.to_excel(writer, sheet_name="RandomForrest", startrow=0, startcol=0)
+
+workbook.close()
+writer.save()
+
+print(len(rf_prediction))
