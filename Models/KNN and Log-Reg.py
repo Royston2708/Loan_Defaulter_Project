@@ -7,7 +7,7 @@ import seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
-
+import xlsxwriter
 
 # Build a K-Nearest Neighbours Classifier for the Bank Data that we have
 file1 = pd.read_csv("/home/user/Downloads/portugese bank/bank-full-encoded.csv", sep=";" ,parse_dates= True)
@@ -20,11 +20,10 @@ sns.set()
 sns.countplot("job_bluecollar", hue = "y", data = file1, palette = "RdBu")
 plt.xticks([0,1], ["NOT MIDDLE AGED","MIDDLE AGED"])
 plt.title("MID-AGE vs LOAN ACCEPTANCE")
-plt.show()
 
 # Splitting Data into Training set and test Set
-train_Data = file1.iloc[:32000,:]
-test_data =file1.iloc[32000:,:]
+train_Data = file1.iloc[:31647,:]
+test_data =file1.iloc[31647:,:]
 
 # Building a KNN Predictor model for the data
 y = train_Data["y"].values
@@ -44,7 +43,6 @@ for i in prediction:
     else:
         count_1 += 1
     print(i)
-
 zero = count_0
 one = count_1
 
@@ -114,3 +112,41 @@ print("\nThe Classification Report for the KNN Model is as Follows:\n", classifi
 print("\nThe Confusion Matrix for the Log-Reg model is as follows:\n", confusion_matrix(y_test,y_prediction))
 
 print("\nThe Classification Report for the Log-Reg model is as follows:\n", classification_report(y_test, y_prediction))
+
+
+
+
+
+# WRITING ALL MODEL OUTPUTS TO EXCEL FILE
+writer = pd.ExcelWriter(path = "/home/user/Downloads/portugese bank/knn and LogReg .xlsx", engine = 'xlsxwriter')
+workbook = writer.book
+
+#Saving KNN output and making a DataFrame from it
+knn_output = []
+for i in prediction:
+    knn_output.append(i)
+print(knn_output)
+df_knn = pd.DataFrame(knn_output)
+print(df_knn)
+
+# Writing this DataFrame to Excel
+df_knn.to_excel(writer,sheet_name="KNN and LogReg", startcol=0, startrow=0)
+
+# Saving LogReg Output and making a DataFrame
+logreg_output = []
+for o in y_prediction:
+    logreg_output.append(o)
+print(logreg_output)
+
+df_logreg = pd.DataFrame(logreg_output)
+print(df_logreg)
+
+#Writing DataFrame to Excel
+
+df_logreg.to_excel(writer, sheet_name="KNN and LogReg", startcol= 3 , startrow=0)
+
+
+workbook.close()
+writer.save()
+
+print(len(prediction), len(y_prediction))
