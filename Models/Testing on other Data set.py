@@ -36,7 +36,7 @@ print(new_df.head())
 print(new_df.keys())
 # Splitting Data into Test and Train
 y_new = new_df["Default_On_Payment"].values
-x_new = new_df.drop(["Default_On_Payment"], axis= 1).values
+x_new = new_df.drop(["Default_On_Payment","Count"], axis= 1).values
 x_train, x_test, y_train, y_test = train_test_split(x_new, y_new, test_size= 0.3, random_state= 25)
 
 # Running LogReg
