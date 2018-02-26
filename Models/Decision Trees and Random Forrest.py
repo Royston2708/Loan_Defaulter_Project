@@ -38,7 +38,33 @@ for i in rf_prediction:
 df_rfoutput = pd.DataFrame(rf_output)
 df_rfoutput.to_excel(writer, sheet_name="RandomForrest", startrow=0, startcol=0)
 
-workbook.close()
-writer.save()
 
 print(len(rf_prediction))
+
+features = rf_classifier.feature_importances_
+print(features)
+print(len(features))
+
+feature_list = file1.columns.values.tolist()
+print(feature_list)
+
+x = 0
+for (i,j) in np.ndenumerate(features):
+    x = x + j
+
+print(x)
+
+print("\nThe feature list and its corresponding importance is as follows:")
+feature_output = []
+for i in range(26):
+    print(feature_list[i], "=", features[i]*100, "%")
+    feature_output.append(features[i]*100)
+
+df_feature_names = pd.DataFrame(feature_list)
+df_feature_values = pd.DataFrame(feature_output)
+df_feature_values.to_excel(writer, sheet_name="RandomForrest", startrow= 0, startcol=5)
+df_feature_names.to_excel(writer, sheet_name="RandomForrest", startrow= 0, startcol=4)
+
+
+workbook.close()
+writer.save()
