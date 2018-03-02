@@ -45,6 +45,7 @@ df_feature1 = FeatureGeneration(column1= "housing", column2= "duration_low")
 new_df = pd.concat([x,df_feature1], axis= 1)
 
 def TestResults(data,target):
+    global rf_classifier
     y = data[str(target)].values
     x = data.drop([str(target)], axis=1).values
 
@@ -59,40 +60,89 @@ def TestResults(data,target):
 
     return confusion_matrix(y_test, rf_prediction), classification_report(y_test, rf_prediction)
 
+
 F1matrix , F1report = TestResults(data= new_df, target = "y")
 print("The Confusion Matrix with 1 feature is\n", F1matrix)
 print("\nThe Classification Report with 1 Feature is:\n", F1report)
 
 
-# Generating housing and duration med
-df_feature2 = FeatureGeneration(column1= "housing", column2= "duration_med")
-new_df2 = pd.concat([new_df,df_feature2], axis= 1)
+def TotalFeatureGenerator(data,target_var):
+    # Creating iterator
 
-F2matrix , F2report = TestResults(data= new_df2, target = "y")
-print("\nThe Confusion Matrix with 2 features generated is\n", F2matrix)
-print("\nThe Classification Report with 2 Features generated is:\n", F2report)
+    keys = data.keys()
+    print("The features are the following:\n", keys)
+    feature_list = data.columns.values.tolist()
+    feature_list.remove(str(target_var))
+    np_feature_list = np.array(feature_list)
+    print(np_feature_list.size)
 
-#Generating housing and duration high
-df_feature3 = FeatureGeneration(column1= "housing", column2= "duration_high")
-new_df3 = pd.concat([new_df2,df_feature3], axis= 1)
+    target = data[str(target_var)].values
+    input_data = data.drop(str(target_var), axis=1).values
 
-F3matrix , F3report = TestResults(data= new_df3, target = "y")
-print("\nThe Confusion Matrix with 3 features generated is\n", F3matrix)
-print("\nThe Classification Report with 3 Features generated is:\n", F3report)
+    data_train, data_test, target_train, target_test = train_test_split(input_data, target, test_size= 0.3, random_state= 25)
+    rf = RandomForestClassifier()
+    rf.fit(data_train,target_train)
 
-#Combining Tertiary Education and bluecollar job
-df_feature4 = FeatureGeneration(column1= "edu_tertiary", column2= "job_bluecollar")
-new_df4 = pd.concat([new_df3,df_feature4], axis= 1)
+    importance = (rf.feature_importances_)*100
+    np_importance = np.array(importance)
 
-F4matrix , F4report = TestResults(data= new_df4, target = "y")
-print("\nThe Confusion Matrix with 4 features generated is\n", F4matrix)
-print("\nThe Classification Report with 4 Features generated is:\n", F4report)
+    print(np_importance.size)
 
-#Combining marital and housing
-df_feature5 = FeatureGeneration(column1= "marital", column2= "housing")
-new_df5 = pd.concat([new_df4,df_feature5], axis= 1)
+    np_2Darray = np.column_stack((np_feature_list,np_importance))
+    df_feature_list = pd.DataFrame(data=np_2Darray)
+    df_feature_list.columns = ["0", "1"]
 
-F5matrix , F5report = TestResults(data= new_df5, target = "y")
-print("\nThe Confusion Matrix with 5 features generated is\n", F5matrix)
-print("\nThe Classification Report with 5 Features generated is:\n", F5report)
+    print(df_feature_list.dtypes)
+
+    imp_features = []
+    j_val = []
+    for i,j in np.ndenumerate(np_importance):
+        if j > 2:
+            imp_features.append(np_feature_list[i])
+            j_val.append(j)
+        else:
+            continue
+
+    np_imp_features = np.array(imp_features)
+    np_j_val = np.array(j_val)
+
+    np_2DImp = np.column_stack((np_imp_features, np_j_val))
+
+    df_Imp_feature_list = pd.DataFrame(data=np_2DImp)
+    df_Imp_feature_list.columns = ["name", "value"]
+
+TotalFeatureGenerator(data = x, target_var= "y")
+#
+# # Generating housing and duration med
+# df_feature2 = FeatureGeneration(column1= "housing", column2= "duration_med")
+# new_df2 = pd.concat([new_df,df_feature2], axis= 1)
+#
+# F2matrix , F2report = TestResults(data= new_df2, target = "y")
+# print("\nThe Confusion Matrix with 2 features generated is\n", F2matrix)
+# print("\nThe Classification Report with 2 Features generated is:\n", F2report)
+#
+# #Generating housing and duration high
+# df_feature3 = FeatureGeneration(column1= "housing", column2= "duration_high")
+# new_df3 = pd.concat([new_df2,df_feature3], axis= 1)
+#
+# F3matrix , F3report = TestResults(data= new_df3, target = "y")
+# print("\nThe Confusion Matrix with 3 features generated is\n", F3matrix)
+# print("\nThe Classification Report with 3 Features generated is:\n", F3report)
+#
+# #Combining Tertiary Education and bluecollar job
+# df_feature4 = FeatureGeneration(column1= "edu_tertiary", column2= "job_bluecollar")
+# new_df4 = pd.concat([new_df3,df_feature4], axis= 1)
+#
+# F4matrix , F4report = TestResults(data= new_df4, target = "y")
+# print("\nThe Confusion Matrix with 4 features generated is\n", F4matrix)
+# print("\nThe Classification Report with 4 Features generated is:\n", F4report)
+#
+# #Combining marital and housing
+# df_feature5 = FeatureGeneration(column1= "marital", column2= "housing")
+# new_df5 = pd.concat([new_df4,df_feature5], axis= 1)
+#
+# F5matrix , F5report = TestResults(data= new_df5, target = "y")
+# print("\nThe Confusion Matrix with 5 features generated is\n", F5matrix)
+# print("\nThe Classification Report with 5 Features generated is:\n", F5report)
+
 
