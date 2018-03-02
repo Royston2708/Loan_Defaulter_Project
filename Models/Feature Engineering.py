@@ -105,11 +105,13 @@ def TotalFeatureGenerator(data,target_var):
 
     np_imp_features = np.array(imp_features)
     np_j_val = np.array(j_val)
+    df_dict_imp = dict()
+    df_dict_imp["col1"] = np_imp_features
+    df_dict_imp["col2"] = np_j_val
 
-    np_2DImp = np.column_stack((np_imp_features, np_j_val))
-
-    df_Imp_feature_list = pd.DataFrame(data=np_2DImp)
-    df_Imp_feature_list.columns = ["name", "value"]
+    df = pd.DataFrame(data = df_dict_imp)
+    df = df.sort_values("col2")
+    print(df)
 
 TotalFeatureGenerator(data = x, target_var= "y")
 #
