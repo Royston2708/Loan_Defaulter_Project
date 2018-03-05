@@ -45,6 +45,7 @@ logreg.fit(x_train, y_train)
 
 logReg_prediction = logreg.predict(x_test)
 print("\nThe Confusion Matrix for the logreg Model is as follows: \n", confusion_matrix(y_test, logReg_prediction))
+print("\n The classification report for the logreg model is as follows:\n", classification_report(y_test, logReg_prediction))
 
 # Running Random Forrest
 rf = RandomForestClassifier()
