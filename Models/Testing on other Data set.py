@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
+from sklearn.neighbors import KNeighborsClassifier
 
 
 file1 = pd.read_excel("/home/user/Downloads/Data Sources/Kaggle Datasets/Par_Data for Logistic Regression.xlsx", header = 1)
@@ -14,6 +15,7 @@ y = file1["Default_On_Payment"]
 x = file1.drop(["Customer_ID"], axis = 1)
 x_columns = x.keys()
 print(x_columns)
+print(x.dtypes)
 
 new_df = pd.DataFrame()
 
@@ -62,3 +64,10 @@ svm.fit(x_train, y_train)
 svm_prediction = svm.predict(x_test)
 print("\nThe Confusion Matrix for SVM is as follows:\n",confusion_matrix(y_test, svm_prediction))
 print("\nThe Classification report for the SVM Model is:\n",classification_report(y_test,svm_prediction))
+
+#Running KNN
+knn = KNeighborsClassifier()
+knn.fit(x_train,y_train)
+knn_prediction = knn.predict(x_test)
+print("\nThe Confusion Matrix for KNN is as follows:\n",confusion_matrix(y_test, knn_prediction))
+print("\nThe Classification report for the KNN Model is:\n",classification_report(y_test,knn_prediction))
