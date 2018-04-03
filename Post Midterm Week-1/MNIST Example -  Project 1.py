@@ -24,5 +24,5 @@ def neural_network_model(data):
     hidden_3_layer = {"weights": tf.Variable(tf.random_normal([n_nodes_hl2, n_nodes_hl3])),
                       "biases": tf.Variable(tf.random_normal(n_nodes_hl3))}
 
-    output_layer = {"weights": tf.Variable(tf.random_normal([784, n_nodes_hl1])),
+    output_layer = {"weights": tf.Variable(tf.random_normal([n_nodes_hl3, n_classes])),
                       "biases": tf.Variable(tf.random_normal(n_classes))}
