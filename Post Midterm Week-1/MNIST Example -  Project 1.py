@@ -29,13 +29,13 @@ def neural_network_model(data):
 
 # The network format is ((input* weights) + biases)
 
-    l1 = tf.add(tf.matmul(data,hidden_1_layer["weights"]) + hidden_1_layer["biases"])
+    l1 = tf.add(tf.matmul(data,hidden_1_layer["weights"]),hidden_1_layer["biases"])
     l1 = tf.nn.relu(l1)
 
-    l2 = tf.add(tf.matmul(data,hidden_2_layer["weights"]) + hidden_2_layer["biases"])
+    l2 = tf.add(tf.matmul(data,hidden_2_layer["weights"]),hidden_2_layer["biases"])
     l2 = tf.nn.relu(l2)
 
-    l3 = tf.add(tf.matmul(data, hidden_3_layer["weights"]) + hidden_3_layer["biases"])
+    l3 = tf.add(tf.matmul(data, hidden_3_layer["weights"]),hidden_3_layer["biases"])
     l3 = tf.nn.relu(l3)
 
     output = tf.matmul(l3,output_layer["weights"]) + output_layer["biases"]
