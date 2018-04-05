@@ -57,3 +57,7 @@ def train_neural_net(x):
             for _ in range(int(mnist.train.num_examples/batch_size)):
 
                 x,y = mnist.train.next_batch(batch_size)
+                _,c = sess.run([optimizer,cost], feed_dict= {x:x, y:y})
+                epoch_cost += c
+
+            print("Epoch", epoch , "completed out of:", hm_epochs , "Cost:", epoch_cost)
