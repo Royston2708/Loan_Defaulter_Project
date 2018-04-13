@@ -25,15 +25,15 @@ X_data = tf.placeholder("float", shape=[None, 26])
 Y_data = tf.placeholder("float", shape=[None, 1])
 
 
-W_1 = tf.Variable(tf.random_normal(shape=[26, 100]))
-b_1 = tf.Variable(tf.random_normal(shape=[100]))
+W_1 = tf.Variable(tf.random_normal(shape=[26, 200]))
+b_1 = tf.Variable(tf.random_normal(shape=[200]))
 a1 = tf.sigmoid(tf.add(tf.matmul(X_data, W_1), b_1))
 
-W_2 = tf.Variable(tf.random_normal(shape=[100, 75]))
-b_2 = tf.Variable(tf.random_normal(shape=[75]))
+W_2 = tf.Variable(tf.random_normal(shape=[100, 175]))
+b_2 = tf.Variable(tf.random_normal(shape=[175]))
 a2 = tf.sigmoid(tf.add(tf.matmul(a1, W_2), b_2))
 
-W_out = tf.Variable(tf.random_normal(shape=[75, 1]))
+W_out = tf.Variable(tf.random_normal(shape=[175, 1]))
 b_out = tf.Variable(tf.random_normal(shape=[1]))
 logit = tf.add(tf.matmul(a2, W_out), b_out)
 answer = tf.round(tf.sigmoid(logit))
@@ -45,7 +45,7 @@ accuracy = tf.reduce_mean(tf.cast(tf.equal(Y_data, answer), "float32"))
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    epochs = 100
+    epochs = 200
     batch_size = 25
     batches = int(len(X) / batch_size)
 
